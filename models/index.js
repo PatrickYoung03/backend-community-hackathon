@@ -5,7 +5,12 @@ async function getAllPosts() {
   return res.rows;
 }
 
-async function createPost({ title, content, location, contact }) {
+async function getById(id) {
+  const res = await query(`select * FROM community WHERE id = $1`, [id]);
+  return res.rows[0];
+}
+
+async function createPost({ name, title, content, location, contact }) {
   const res = await query(
     `INSERT INTO community 
   ( name,
@@ -13,15 +18,16 @@ async function createPost({ title, content, location, contact }) {
     content,
     location,
     contact
-    ) VALUES ($1, $2, $3, $4) RETURNING title
+    ) VALUES ($1, $2, $3, $4, $5) RETURNING title
   
     `,
-    [title, content, location, contact]
+    [name, title, content, location, contact]
   );
   return res.rows[0];
 }
 
 module.exports = {
   getAllPosts,
-  createPost
+  createPost,
+  getById
 };

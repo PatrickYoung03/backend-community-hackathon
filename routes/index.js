@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { getAllPosts, createPost } = require("../models/index");
+const { getAllPosts, createPost, getById } = require("../models/index");
 
 router.get("/posts", async (req, res) => {
   const result = await getAllPosts();
+  res.json(result);
+});
+
+router.get("/posts/:id", async (req, res) => {
+  const { id } = req.query;
+  const result = await getById(id);
   res.json(result);
 });
 
