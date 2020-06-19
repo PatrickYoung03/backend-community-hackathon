@@ -8,7 +8,8 @@ async function getAllPosts() {
 async function createPost({ title, content, location, contact }) {
   const res = await query(
     `INSERT INTO community 
-  (title,
+  ( name,
+    title,
     content,
     location,
     contact
