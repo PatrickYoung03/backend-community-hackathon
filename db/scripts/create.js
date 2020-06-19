@@ -9,7 +9,8 @@ async function createTable() {
         location TEXT,
         contact TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        type TEXT
+        type TEXT,
+        comments TEXT []
         )
 
     `);
