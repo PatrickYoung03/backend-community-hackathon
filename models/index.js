@@ -5,11 +5,22 @@ async function getAllPosts() {
   return res.rows;
 }
 
-async function createPost() {
-  const res = await query(`INSERT INTO community 
-    `);
+async function createPost({ title, content, location, contact }) {
+  const res = await query(
+    `INSERT INTO community 
+  (title,
+    content,
+    location,
+    contact
+    ) VALUES ($1, $2, $3, $4) RETURNING title
+  
+    `,
+    [title, content, location, contact]
+  );
+  return res.rows[0];
 }
 
 module.exports = {
-  getAllPosts
+  getAllPosts,
+  createPost
 };
