@@ -8,7 +8,7 @@ router.get("/posts", async (req, res) => {
 });
 
 router.get("/posts/:id", async (req, res) => {
-  const { id } = req.query;
+  const { id } = req.params;
   const result = await getById(id);
   res.json(result);
 });
