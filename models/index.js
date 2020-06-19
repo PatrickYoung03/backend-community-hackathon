@@ -10,7 +10,7 @@ async function getById(id) {
   return res.rows[0];
 }
 
-async function createPost({ name, title, content, location, contact }) {
+async function createPost({ name, title, content, location, contact, type }) {
   const res = await query(
     `INSERT INTO community 
   ( name,
@@ -18,10 +18,10 @@ async function createPost({ name, title, content, location, contact }) {
     content,
     location,
     contact
-    ) VALUES ($1, $2, $3, $4, $5) RETURNING title
+    ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING title
   
     `,
-    [name, title, content, location, contact]
+    [name, title, content, location, contact, type]
   );
   return res.rows[0];
 }

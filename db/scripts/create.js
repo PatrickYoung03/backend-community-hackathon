@@ -8,7 +8,8 @@ async function createTable() {
         content TEXT,
         location TEXT,
         contact TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        type TEXT
         )
 
     `);
